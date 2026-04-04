@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Can I watch it on a plane? - {{ info.title }}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="static/css/list.css" />
+		<link rel="stylesheet" href="static/css/main.css" />
+		<noscript><link rel="stylesheet" href="static/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+
+    <body>
+
+        <button onclick="history.back()" style="border-radius: 0px; border: none !important; box-shadow: none; text-align: left; padding-top: 1em;"><i class="fa fa-arrow-left" style="font-size: xx-large;"aria-hidden="true"></i></button>
+
+        <div id="wrapper" style="width: 85%; margin: 2em auto; max-height: 85vh">
+
+            <div style="display: flex; gap: 2em; align-items: flex-start;">
+                <div class="left-column" style="align-items: flex-start;">
+                    <img class="poster" src="{{ info.img }}" alt="Movie Poster">
+                </div>
+
+                <div class="right-column">
+                    <h1 style="margin-bottom: 0.5em; text-align: center;">{{ info.title }}</h1>
+                    <div style="display: flex; gap: 2em"> 
+                        <p style="flex: 1; text-align: left; font-size: larger;">Year: {{ info.year }}</p>
+                        <p style="flex: 1; text-align: right; font-size: larger">Director(s): {{ info.directors | join(', ') }}</p>  
+                    </div>
+                    
+
+                    <div class="text-boxes">
+                        <div class="text-box verdict" style="background-color: #e8cb4c; margin-bottom: 0;">
+                            <h1 style="font-size: 2.5rem; text-align: center; margin: auto;"> {{ info.verdict }} </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+
+        <script src="static/js/jquery.min.js"></script>
+		<script src="static/js/browser.min.js"></script>
+		<script src="static/js/breakpoints.min.js"></script>
+		<script src="static/js/util.js"></script>
+		<script src="static/js/main.js"></script>
+        <script src="static/js/extras.js"></script>
+
+        <script>
+			function goToMain() {
+				window.location.href = `/`;
+			}
+		</script>
+
+    </body>
+
+</html>
