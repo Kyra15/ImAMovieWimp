@@ -3,12 +3,18 @@
   "name": "I'm A Movie Wimp",
   "version": "0.1.0",
   "description": "A spoiler-free pop-up for movie wimps (like me)",
+  "icons": {
+    "128": "images/whome128.png",
+    "48": "images/whome48.png",
+    "16": "images/whome16.png"
+  },
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "icon.png"
+    "default_icon": "images/whome.png"
   },
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["activeTab", "tabs"]
+  "permissions": ["activeTab", "tabs"],
+  "host_permissions": ["https://api.groq.com/*"]
 }

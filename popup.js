@@ -1,15 +1,19 @@
-// Get active tab info and trigger search + classify
+document.addEventListener("DOMContentLoaded", async () => {
+    const label = document.querySelector("h1");
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    const movieTitle = extractMovieName(tab.title, tab.url);
+    label.textContent = `${movieTitle}`;
+});
+
+
 document.querySelector("button").addEventListener("click", async () => {
   const button = document.querySelector("button");
-  const label = document.querySelector("p");
 
   button.disabled = true;
   button.textContent = "Searching...";
 
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   const movieTitle = extractMovieName(tab.title, tab.url);
-
-  label.textContent = `Current movie: ${movieTitle}`;
 
   const response = await chrome.runtime.sendMessage({
     type: "GET_ENDING",
@@ -22,23 +26,31 @@ document.querySelector("button").addEventListener("click", async () => {
   showResult(response.sentiment);
 });
 
+
 function extractMovieName(title, url) {
   return title
-    .replace(/[\(\[].*?[\)\]]/g, "")   // remove (1972), [HD], etc.
-    .replace(/[-–|].*$/g, "")          // remove "- IMDb", "| Letterboxd"
+    .replace(/[\(\[].*?[\)\]]/g, "")
+    .replace(/[-–|].*$/g, "")
     .replace(/\s+/g, " ")
-    .trim();
+    .trim()
+    .split(' ')
+    .map(word => word[0].toUpperCase() + word.slice(1))
+    .join(' ');
 }
 
 function showResult(sentiment) {
   const existing = document.getElementById("result-popup");
   if (existing) existing.remove();
 
-  const popup = document.createElement("div");
-  popup.id = "result-popup";
-  popup.className = sentiment === "happy" ? "happy" : "sad";
-  popup.innerHTML = `
-    <span class="label">${sentiment === "happy" ? "Happy :D" : "Sad :("}</span>
-  `;
-  document.body.appendChild(popup);
+  // get the label class thing inside the document and then make a div
+  const card = document.querySelector(".verdict-card");
+  card.innerHTML = "";
+ 
+  const cls = sentiment.toLowerCase().trim();
+ 
+  const badge = document.createElement("span");
+  badge.className = `badge ${cls}`;
+  badge.innerHTML = `<span class="badge-dot"></span>${sentiment}`;
+ 
+  card.appendChild(badge);
 }
