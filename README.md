@@ -1,4 +1,4 @@
-I'm A Movie Wimp
+## I'm A Movie Wimp
 A Chrome extension for people who can't handle not knowing how a movie ends. Search any movie on Google, click the button, and find out if it ends happy, sad, or ambiguous without spoilers.
 
 How It Works:
