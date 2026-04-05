@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "I'm A Movie Wimp",
+  "name": "How does it end?",
   "version": "0.1.0",
-  "description": "A spoiler-free pop-up for movie wimps (like me)",
+  "description": "A spoiler-free pop-up for movie wimps (like me) who like to check for happy endings to their movies",
   "icons": {
     "128": "images/whome128.png",
     "48": "images/whome48.png",
